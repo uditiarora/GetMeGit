@@ -1,5 +1,5 @@
 // Dependencies
-var username = "bchiang7";
+var username = "uditiarora";
 const fetch = require("node-fetch");
 var repoData;
 function most_starred(){
@@ -11,7 +11,7 @@ function most_starred(){
           .slice(0, LIMIT);
       var resp = "";
       mostStarredRepos.forEach((repo => {
-          if(repo.name !== undefined){
+          if(repo[sortProperty] !== 0){
               resp += (repo.name + ": "+ repo[sortProperty]+"\n");
           }
       }));
@@ -32,8 +32,12 @@ fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
                 repo_data = json;
                 if(repo_data != null){
                     var resp = most_starred();
-                   
+                    if(resp.localeCompare("") === 0){
+                        console.log("no repo");
+                    }
+                    else{
                         resp = "Most starred repos with number of stars: \n" + resp;
+                    }
                     console.log(resp);
                 }
                 else{

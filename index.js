@@ -228,7 +228,7 @@ function most_starred(){
             .slice(0, LIMIT);
         var resp = "";
         mostStarredRepos.forEach((repo => {
-            if(repo.name !== undefined){
+            if(repo[sortProperty] !== 0){
                 resp += (repo.name + ": "+ repo[sortProperty]+"\n");
             }
         }));
@@ -239,9 +239,13 @@ bot.onText(/\/most_starred/, (msg) => {
     const chatId = msg.chat.id;
     if(repo_data != null){
         var resp = most_starred();
-        
+        if(resp.localeCompare("") === 0){
+            bot.sendMessage(chatId,"User does not have any starred repositories.");
+        }
+        else{
             resp = "Most starred repos with number of stars: \n" + resp;
             bot.sendMessage(chatId,resp);
+        }
         
     }
     else{
@@ -259,10 +263,13 @@ bot.onText(/\/most_starred/, (msg) => {
                 repo_data = json;
                 if(repo_data != null){
                     var resp = most_starred();
-                   
+                    if(resp.localeCompare("") === 0){
+                        bot.sendMessage(chatId,"User does not have any starred repositories.");
+                    }
+                    else{
                         resp = "Most starred repos with number of stars: \n" + resp;
                         bot.sendMessage(chatId,resp);
-                    
+                    }
                 }
                 else{
                     bot.sendMessage(chatId,"User has no repositories that are starred.");
