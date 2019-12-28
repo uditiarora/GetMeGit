@@ -11,6 +11,9 @@ var user = new GhPolyglot(username + "/git-stats");
 var all_repo_stats = null;
 var user_data = null;
 var repo_data = null;
+var command_keyboard = [["/commands_list","/all_reps","/rep_stats"],
+                        ["/name","/joining_date","/followers"],["/following","/location","/bio"],
+                    ["/avatar","/company","/most_starred"]];
 
 bot.on("polling_error", (err) => console.log(err));
 bot.onText(/\/start/, (msg) => {
@@ -31,7 +34,11 @@ bot.onText(/\/start/, (msg) => {
                 setError({ active: true, type: 400 });
                 console.error('Error:', error);
     });
-    bot.sendMessage(chatId, resp);
+    bot.sendMessage(chatId, resp,{
+        "reply_markup" : {
+            "keyboard" : command_keyboard
+        }
+    });
 });
 
 bot.onText(/\/user (.+)/, (msg, match) => {
@@ -132,7 +139,7 @@ bot.onText(/\/name/, (msg) => {
 bot.onText(/\/joining_date/, (msg) => {
     const chatId = msg.chat.id;
     if(user_data != null){
-        bot.sendMessage(chatId, `User's joining date was ${user_data.created_at}.`);
+        bot.sendMessage(chatId, `User's joining date was ${user_data.created_at.substring(0,10)}.`);
     }
     else{
         bot.sendMessage(chatId,"Couldn't find this user. Try some other user");
@@ -278,8 +285,24 @@ bot.onText(/\/most_starred/, (msg) => {
             .catch(error => {
                 console.error('Error:', error);
         });
-
-        
-
     }    
+});
+
+
+bot.onText(/\/commands_list/, (msg) => {
+    const chatId = msg.chat.id;
+    var resp = "The list of commands with their functionality: \n";
+    resp += "/start : To start the bot\n";
+    resp += "/user username : Fetches the user data\n";
+    resp += "/all_reps : Returns names of all the user's public repositories\n";
+    resp += "/name : Returns user's name\n";
+    resp += "/joining_date : Returns user's joining date\n";
+    resp += "/followers : Returns number of followers of the user\n";
+    resp += "/following : Returns number of people the user is following\n";
+    resp += "/location : Returns user's location\n";
+    resp += "/bio : Returns user's bio\n";
+    resp += "/avatar : Returns user's avatar\n";
+    resp += "/company : Returns user's company\n";
+    resp += "/most_starred : Returns user's top 10 starred repositories\n";
+    bot.sendMessage(chatId,resp);
 });
