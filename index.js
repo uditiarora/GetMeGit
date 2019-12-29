@@ -18,7 +18,7 @@ var command_keyboard = [["/commands_list","/all_reps","/rep_stats"],
 bot.on("polling_error", (err) => console.log(err));
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
-    const resp = "Welcome to GetMeGit bot. Type /user username to search for the user you are looking for. the default user is uditiarora";
+    const resp = "Welcome to GetMeGit bot. Type /user username to search the user you are looking for. The default user is uditiarora.";
     fetch(`https://api.github.com/users/${username}`)
             .then(response => {
                 if (response.status === 404) {
