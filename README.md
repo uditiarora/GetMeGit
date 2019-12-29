@@ -23,3 +23,5 @@ node index
 ![img1](./img/2.jpg)
 ![img1](./img/3.jpg)
 ![img1](./img/4.jpg)
+
+Note: The bot is not available on Telegram it has not been deployed on any server. Anyone can host this locally. Make sure to use your own telegram token.
