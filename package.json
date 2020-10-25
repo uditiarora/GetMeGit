@@ -4,15 +4,15 @@
   "private": true,
   "dependencies": {
     "@metamodules/postgres": "^1.2.1",
+    "async": "^3.1.0",
     "deploy-node-app": "^1.4.3",
     "dotenv": "^8.0.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
-    "async": "^3.1.0",
     "gh-polyglot": "^2.3.2",
     "node-fetch": "^2.6.0",
-    "node-telegram-bot-api": "^0.40.0"
+    "node-telegram-bot-api": "^0.40.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
@@ -30,7 +30,8 @@
     "prettier": "^1.17.1"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": ""
   },
   "eslintConfig": {
     "extends": "react-app"
