@@ -32,6 +32,7 @@
   "scripts": {
     "start": "node index.js",
     "build": ""
+    
   },
   "eslintConfig": {
     "extends": "react-app"
