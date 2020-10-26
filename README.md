@@ -12,6 +12,7 @@ npm install
 ```bash
 node index
 ```
+4. Go to localhost:3000 in your browser.
 
 #### The bot uses :
 1. Github API
