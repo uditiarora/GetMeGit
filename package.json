@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@metamodules/postgres": "^1.2.1",
-    "async": "^3.1.0",
+    "async": "^3.2.2",
     "deploy-node-app": "^1.4.3",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
